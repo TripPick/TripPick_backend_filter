@@ -28,8 +28,13 @@ public class KafkaMessageConcumer {
     )
     void handleTourinfoEvent(SearchEvent event, Acknowledgment ack) {
         Optional<Search> content = searchRepository.findById(event.getSearch().getContentid());
-        if(content.get() == null){
+
+        if (content.isEmpty()) {
+            log.info("No existing Search content found for contentId: {}. Saving new entry.", event.getSearch().getContentid());
             searchRepository.save(event.getSearch());
+        } else {
+            log.debug("Search content already exists for contentId: {}. Skipping save.", event.getSearch().getContentid());
+
         }
     }
 }
