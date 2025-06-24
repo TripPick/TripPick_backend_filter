@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime; // modifiedTime과 createdTime이 LocalDateTime이 될 수 있으므로 추가
 
 @Entity
-@Table(name = "Search") // 데이터베이스 테이블 이름과 일치
+@Table(name = "search") // 데이터베이스 테이블 이름과 일치
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,54 +21,54 @@ import java.time.LocalDateTime; // modifiedTime과 createdTime이 LocalDateTime�
 public class Search {
 
     @Id
-    @Column(name = "content_id", length = 20, nullable = false)
-    private String contentId;
+    @Column(name = "contentid", length = 20)
+    private String contentid;
 
-    @Column(name = "content_type_id", length = 2)
-    private String contentTypeId;
+    @Column(name = "contenttypeid", length = 2)
+    private String contentTypeid;
 
-    @Column(name = "cat1", length = 20)
+    @Column(name = "cat1")
     private String cat1;
 
-    @Column(name = "cat2", length = 20)
+    @Column(name = "cat2")
     private String cat2;
 
-    @Column(name = "cat3", length = 20)
+    @Column(name = "cat3")
     private String cat3;
 
     @Column(name = "lDong_signgu_cd")
     private String lDongSignguCd;
 
-    @Column(name = "lDong_regn_cd")
+    @Column(name = "l_dong_regn_cd")
     private String lDongRegnCd;
 
-    @Column(name = "area_code")
-    private String areaCode;
+    @Column(name = "areacode")
+    private String areacode;
 
-    @Column(name = "addr1", columnDefinition = "TEXT")
+    @Column(name = "addr1")
     private String addr1;
 
-    @Column(name = "addr2", columnDefinition = "TEXT")
+    @Column(name = "addr2")
     private String addr2;
 
-    @Column(name = "first_image", columnDefinition = "TEXT")
-    private String firstImage;
+    @Column(name = "firstimage")
+    private String firstimage;
 
-    @Column(name = "first_image2", columnDefinition = "TEXT")
-    private String firstImage2;
+    @Column(name = "firstimage2")
+    private String firstimage2;
 
-    @Column(name = "tel", length = 20)
+    @Column(name = "tel")
     private String tel;
 
-    @Column(name = "title", length = 20)
+    @Column(name = "title")
     private String title;
 
-    @Column(name = "zipcode", length = 5)
+    @Column(name = "zipcode")
     private String zipcode;
 
-    @Column(name = "modified_time")
-    private String modifiedTime;
+    @Column(name = "modifiedtime")
+    private LocalDateTime modifiedtime;
 
-    @Column(name = "created_time")
-    private String createdTime;
+    @Column(name = "createdtime")
+    private LocalDateTime createdtime;
 }

@@ -6,6 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.cglib.core.Local;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Schema(description = "통합 콘텐츠 데이터 (검색 + 상세 정보)")
 @Data
@@ -42,9 +46,9 @@ public class UnifiedContentDto {
     @Schema(description = "우편번호", example = "12345")
     private String zipcode;
     @Schema(description = "콘텐츠 최종 수정 시간", example = "2024-01-20T10:30:00")
-    private String modifiedtime; // String으로 유지 (엔티티 필드와 동일)
+    private LocalDateTime modifiedtime; // String으로 유지 (엔티티 필드와 동일)
     @Schema(description = "콘텐츠 생성 시간", example = "2024-01-20T10:30:00")
-    private String createdtime; // String으로 유지 (엔티티 필드와 동일)
+    private LocalDateTime createdtime; // String으로 유지 (엔티티 필드와 동일)
     @Schema(description = "법정동 시도 코드", example = "42")
     private String lDongRegnCd;
     @Schema(description = "법정동 시군구 코드", example = "42230")
@@ -74,12 +78,12 @@ public class UnifiedContentDto {
         SearchDto searchDto = SearchDto.fromEntity(searchEntity);
 
         return UnifiedContentDto.builder()
-                .contentId(searchDto.getContentId())
-                .contentTypeId(searchDto.getContentTypeId())
+                .contentId(searchDto.getContentid())
+                .contentTypeId(searchDto.getContenttypeid())
                 .cat1(searchDto.getCat1())
                 .cat2(searchDto.getCat2())
                 .cat3(searchDto.getCat3())
-                .areaCode(searchDto.getAreaCode())
+                .areaCode(searchDto.getAreacode())
                 .addr1(searchDto.getAddr1())
                 .addr2(searchDto.getAddr2())
                 .firstimage(searchDto.getFirstimage())
