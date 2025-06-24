@@ -23,3 +23,14 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# Gradle
+.gradle/
+/build/
+
+.idea/         # IntelliJ IDEA
+*.iml          # IntelliJ IDEA module files
+.project       # Eclipse
+.classpath     # Eclipse
+.settings/     # Eclipse
+*.vscode/      # VS Code
