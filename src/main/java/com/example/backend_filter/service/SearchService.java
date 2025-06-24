@@ -90,8 +90,8 @@ public class SearchService {
                     FestivalInfoDto festivalInfo = null;
                     TourCourseInfoDto tourCourseInfo = null;
 
-                    String contentTypeId = searchDto.getContentTypeId();
-                    String contentId = searchDto.getContentId();
+                    String contentTypeId = searchDto.getContenttypeid();
+                    String contentId = searchDto.getContentid();
 
                     switch (contentTypeId) {
                         case "12": // 관광지

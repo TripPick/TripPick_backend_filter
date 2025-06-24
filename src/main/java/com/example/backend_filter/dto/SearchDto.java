@@ -16,9 +16,9 @@ import java.time.LocalDateTime;
 @Schema(description = "여행지 콘텐츠 데이터")
 public class SearchDto {
     @Schema(description = "콘텐츠 고유 ID", example = "C1001")
-    private String contentId;
+    private String contentid;
     @Schema(description = "관광타입 ID", example = "12")
-    private String contentTypeId; // contentTypeId로 변경될 필요가 있을 수 있음 (엔티티 기준)
+    private String contenttypeid; // contentTypeId로 변경될 필요가 있을 수 있음 (엔티티 기준)
     @Schema(description = "대분류 카테고리", example = "자연")
     private String cat1;
     @Schema(description = "중분류 카테고리", example = "자연관광지")
@@ -26,7 +26,7 @@ public class SearchDto {
     @Schema(description = "소분류 카테고리", example = "국립공원")
     private String cat3;
     @Schema(description = "지역 코드", example = "42")
-    private String areaCode;
+    private String areacode;
     @Schema(description = "주소", example = "강원특별자치도 속초시 설악산로")
     private String addr1;
     @Schema(description = "상세 주소", example = "설악동")
@@ -44,32 +44,32 @@ public class SearchDto {
     @Schema(description = "법정동 시군구 코드", example = "42230")
     private String lDongSigunguCd;
     @Schema(description = "콘텐츠 최종 수정 시간", example = "2024-01-20T10:30:00")
-    private String modifiedtime;
+    private LocalDateTime modifiedtime;
     @Schema(description = "콘텐츠 생성 시간", example = "2024-01-20T10:30:00")
-    private String createdtime;
+    private LocalDateTime createdtime;
     @Schema(description = "우편번호", example = "12345")
     private String zipcode;
 
     // Search 엔티티를 DTO로 변환하는 정적 팩토리 메서드 추가
     public static SearchDto fromEntity(Search entity) {
         return SearchDto.builder()
-                .contentId(entity.getContentId())
-                .contentTypeId(entity.getContentTypeId()) // 엔티티의 getContentTypeId()를 사용
+                .contentid(entity.getContentid())
+                .contenttypeid(entity.getContentTypeid()) // 엔티티의 getContentTypeId()를 사용
                 .cat1(entity.getCat1())
                 .cat2(entity.getCat2())
                 .cat3(entity.getCat3())
                 .lDongSigunguCd(entity.getLDongSignguCd())
                 .lDongRegnCd(entity.getLDongRegnCd())
-                .areaCode(entity.getAreaCode())
+                .areacode(entity.getAreacode())
                 .addr1(entity.getAddr1())
                 .addr2(entity.getAddr2())
-                .firstimage(entity.getFirstImage())
-                .firstimage2(entity.getFirstImage2())
+                .firstimage(entity.getFirstimage())
+                .firstimage2(entity.getFirstimage2())
                 .tel(entity.getTel())
                 .title(entity.getTitle())
                 .zipcode(entity.getZipcode())
-                .modifiedtime(entity.getModifiedTime())
-                .createdtime(entity.getCreatedTime())
+                .modifiedtime(entity.getModifiedtime())
+                .createdtime(entity.getCreatedtime())
                 .build();
     }
 }

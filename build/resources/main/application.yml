@@ -6,7 +6,7 @@ spring:
     # MariaDB 접속 URL: 로컬 MariaDB 서버 (3306 포트), travel_db 데이터베이스 연결
     # serverTimezone: 타임존 설정 (MariaDB 서버와 일치)
     # useSSL=false: 개발 환경에서 SSL 문제 방지를 위해 비활성화
-    url: jdbc:mariadb://localhost:3306/travel_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&useSSL=false
+    url: jdbc:mariadb://localhost:3306/trippick?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&useSSL=false
     username: root # MariaDB 접속 계정명 (실제 계정명과 일치해야 함)
     password: 1234 # MariaDB 접속 비밀번호 (실제 비밀번호와 일치해야 함. 없으면 빈 칸)
     driver-class-name: org.mariadb.jdbc.Driver # MariaDB JDBC 드라이버 클래스
@@ -22,3 +22,23 @@ spring:
       hibernate:
         format_sql: true # SQL 쿼리를 보기 좋게 포맷팅
         default_batch_fetch_size: 1000 # N+1 쿼리 문제 완화 (선택 사항)
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    listener:
+      ack-mode: manual_immediate
+    consumer:
+      group-id: ${spring.application.name}
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      enable-auto-commit: false
+      auto-offset-reset: latest
+      max-poll-records: 10
+      properties:
+        spring.json.trusted.packages: "*"
+        spring.json.use.type.headers: false  # 헤더의 타입 정보 무시
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false  # 타입 헤더 추가 비활성화
