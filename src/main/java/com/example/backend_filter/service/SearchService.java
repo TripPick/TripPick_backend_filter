@@ -65,7 +65,7 @@ public class SearchService {
                 }
             }
             if (StringUtils.hasText(filters.getAreaCode())) {
-                predicates.add(criteriaBuilder.equal(root.get("areaCode"), filters.getAreaCode()));
+                predicates.add(criteriaBuilder.equal(root.get("areacode"), filters.getAreaCode()));
             }
             if (StringUtils.hasText(filters.getTitle())) {
                 predicates.add(criteriaBuilder.like(root.get("title"), "%" + filters.getTitle() + "%"));
