@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class SearchFilterDto {
 
     @Schema(description = "콘텐츠 타입 ID", example = "12")
-    private String contentTypeId;
+    private String contenttypeId;
 
     @Schema(description = "대분류 카테고리", example = "A01")
     private String cat1;

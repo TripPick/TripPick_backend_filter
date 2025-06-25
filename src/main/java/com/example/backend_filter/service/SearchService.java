@@ -46,8 +46,8 @@ public class SearchService {
         Specification<Search> spec = (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
 
-            if (StringUtils.hasText(filters.getContentTypeId())) {
-                predicates.add(criteriaBuilder.equal(root.get("contenttypeid"), filters.getContentTypeId()));
+            if (StringUtils.hasText(filters.getContenttypeId())) {
+                predicates.add(criteriaBuilder.equal(root.get("contenttypeid"), filters.getContenttypeId()));
             }
             if (StringUtils.hasText(filters.getCat1())) {
                 predicates.add(criteriaBuilder.equal(root.get("cat1"), filters.getCat1()));
