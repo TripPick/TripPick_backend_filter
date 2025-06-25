@@ -47,7 +47,7 @@ public class SearchService {
             List<Predicate> predicates = new ArrayList<>();
 
             if (StringUtils.hasText(filters.getContentTypeId())) {
-                predicates.add(criteriaBuilder.equal(root.get("contentTypeId"), filters.getContentTypeId()));
+                predicates.add(criteriaBuilder.equal(root.get("contenttypeid"), filters.getContentTypeId()));
             }
             if (StringUtils.hasText(filters.getCat1())) {
                 predicates.add(criteriaBuilder.equal(root.get("cat1"), filters.getCat1()));
@@ -118,9 +118,9 @@ public class SearchService {
                 .collect(Collectors.toList());
     }
 
-    public List<RandomSearchDto> getRandomSearchesByContentTypeId(String contentTypeId, int limit) {
+    public List<RandomSearchDto> getRandomSearchesByContentTypeId(String contenttypeid, int limit) {
         Specification<Search> spec = (root, query, criteriaBuilder) ->
-                criteriaBuilder.equal(root.get("contentTypeid"), contentTypeId);
+                criteriaBuilder.equal(root.get("contenttypeid"), contenttypeid);
 
         List<Search> allMatchingSearches = searchRepository.findAll(spec);
 
@@ -136,7 +136,7 @@ public class SearchService {
                     FestivalInfoDto festivalInfo = null;
                     TourCourseInfoDto tourCourseInfo = null;
 
-                    String currentContentTypeId = searchEntity.getContentTypeid();
+                    String currentContentTypeId = searchEntity.getContenttypeid();
                     String contentId = searchEntity.getContentid();
 
                     switch (currentContentTypeId) {

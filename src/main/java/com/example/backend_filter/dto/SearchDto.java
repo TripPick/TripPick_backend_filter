@@ -54,7 +54,7 @@ public class SearchDto {
     public static SearchDto fromEntity(Search entity) {
         return SearchDto.builder()
                 .contentid(entity.getContentid())
-                .contenttypeid(entity.getContentTypeid()) // 엔티티의 getContentTypeId()를 사용
+                .contenttypeid(entity.getContenttypeid()) // 엔티티의 getContentTypeId()를 사용
                 .cat1(entity.getCat1())
                 .cat2(entity.getCat2())
                 .cat3(entity.getCat3())

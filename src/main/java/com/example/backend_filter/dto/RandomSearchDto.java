@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class RandomSearchDto {
+    private String contentid;
+
     private String title;
 
     private String addr1;
@@ -20,6 +22,7 @@ public class RandomSearchDto {
 
     public static RandomSearchDto fromUnifiedContentDto(UnifiedContentDto unifiedContentDto) {
         return RandomSearchDto.builder()
+                .contentid(unifiedContentDto.getContentid())
                 .title(unifiedContentDto.getTitle())
                 .addr1(unifiedContentDto.getAddr1())
                 .firstimage2(unifiedContentDto.getFirstimage2())

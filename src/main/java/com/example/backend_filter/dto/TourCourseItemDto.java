@@ -1,5 +1,7 @@
 package com.example.backend_filter.dto;
 
+import com.example.backend_filter.entity.TourCourseInfo;
+import com.example.backend_filter.entity.TourCourseItem;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
@@ -35,4 +37,16 @@ public class TourCourseItemDto {
 
     @Schema(description ="반복일련번호")
     private String subnum;
+
+    public static TourCourseItemDto fromEntity(TourCourseItem entity) {
+        return TourCourseItemDto.builder()
+                .contentid(entity.getContentid())
+                .subcontentid(entity.getSubcontentid())
+                .subdetailalt(entity.getSubdetailalt())
+                .subdetailimg(entity.getSubdetailimg())
+                .subdetailoverview(entity.getSubdetailoverview())
+                .subname(entity.getSubnum())
+                .subnum(entity.getSubnum())
+                .build();
+    }
 }

@@ -25,7 +25,7 @@ public class Search {
     private String contentid;
 
     @Column(name = "contenttypeid", length = 2)
-    private String contentTypeid;
+    private String contenttypeid;
 
     @Column(name = "cat1")
     private String cat1;

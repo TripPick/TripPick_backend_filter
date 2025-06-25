@@ -20,9 +20,9 @@ public class UnifiedContentDto {
 
     // SearchDto 필드 (공통 정보)
     @Schema(description = "콘텐츠 고유 ID", example = "C1001")
-    private String contentId;
+    private String contentid;
     @Schema(description = "관광타입 ID", example = "12")
-    private String contentTypeId; // DTO 필드 이름을 contentTypeId로 통일
+    private String contenttypeid; // DTO 필드 이름을 contentTypeId로 통일
     @Schema(description = "대분류 카테고리", example = "자연")
     private String cat1;
     @Schema(description = "중분류 카테고리", example = "자연관광지")
@@ -78,8 +78,8 @@ public class UnifiedContentDto {
         SearchDto searchDto = SearchDto.fromEntity(searchEntity);
 
         return UnifiedContentDto.builder()
-                .contentId(searchDto.getContentid())
-                .contentTypeId(searchDto.getContenttypeid())
+                .contentid(searchDto.getContentid())
+                .contenttypeid(searchDto.getContenttypeid())
                 .cat1(searchDto.getCat1())
                 .cat2(searchDto.getCat2())
                 .cat3(searchDto.getCat3())
