@@ -1,6 +1,7 @@
 package com.example.backend_filter.controller;
 
 import com.example.backend_filter.common.dto.ApiResponseDto;
+import com.example.backend_filter.dto.RandomSearchDto;
 import com.example.backend_filter.dto.SearchDto;
 import com.example.backend_filter.dto.SearchFilterDto;
 import com.example.backend_filter.dto.UnifiedContentDto; // UnifiedContentDto import
@@ -40,6 +41,15 @@ public class SearchController {
     public ResponseEntity<ApiResponseDto<List<UnifiedContentDto>>> getFilteredSearches(@ModelAttribute SearchFilterDto filters) {
         List<UnifiedContentDto> filteredSearches = searchService.getFilteredSearches(filters);
         return ResponseEntity.ok(ApiResponseDto.createOk(filteredSearches));
+    }
+
+    @GetMapping("/random")
+    public ResponseEntity<ApiResponseDto<List<RandomSearchDto>>> getRandomSearchesByContentTypeId(
+            @RequestParam String contentTypeId,
+            @RequestParam(defaultValue = "4") int limit) { // Default to 4 if not specified
+        // Service now returns List<RandomSearchResponseDto>
+        List<RandomSearchDto> randomSearches = searchService.getRandomSearchesByContentTypeId(contentTypeId, limit);
+        return ResponseEntity.ok(ApiResponseDto.createOk(randomSearches));
     }
 
     @GetMapping("/options/cat1")

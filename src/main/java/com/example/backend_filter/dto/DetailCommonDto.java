@@ -7,8 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import com.example.backend_filter.entity.DetailCommon; // 엔티티 클래스 import
+import org.springframework.data.jpa.domain.Specification;
 
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Schema(description = "여행지 콘텐츠 데이터")
 @Data
@@ -26,6 +30,7 @@ public class DetailCommonDto {
     @Schema(description = "주소 (예: 서울 중구 다동)")
     private String addr1;
     @Schema(description = "상세주소")
+
     private String addr2;
     @Schema(description = "원본 대표 이미지 URL (약 500*333 size)")
     private String firstimage;

@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Schema(description = "여행지 콘텐츠 데이터")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor // AllArgsConstructor 추가
 @Builder // Builder 추가
-@Schema(description = "여행지 콘텐츠 데이터")
 public class SearchDto {
     @Schema(description = "콘텐츠 고유 ID", example = "C1001")
     private String contentid;

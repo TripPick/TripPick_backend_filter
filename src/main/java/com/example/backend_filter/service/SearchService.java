@@ -1,13 +1,7 @@
 package com.example.backend_filter.service;
 
+import com.example.backend_filter.dto.*;
 import com.example.backend_filter.entity.Search;
-import com.example.backend_filter.dto.SearchDto;
-import com.example.backend_filter.dto.SearchFilterDto;
-import com.example.backend_filter.dto.UnifiedContentDto; // UnifiedContentDto import
-import com.example.backend_filter.dto.CulturalFacilityInfoDto; // 각 상세 DTO import
-import com.example.backend_filter.dto.FestivalInfoDto;
-import com.example.backend_filter.dto.TourCourseInfoDto;
-import com.example.backend_filter.dto.TourSpotInfoDto;
 import com.example.backend_filter.repository.SearchRepository;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -122,6 +117,61 @@ public class SearchService {
                 })
                 .collect(Collectors.toList());
     }
+
+    public List<RandomSearchDto> getRandomSearchesByContentTypeId(String contentTypeId, int limit) {
+        Specification<Search> spec = (root, query, criteriaBuilder) ->
+                criteriaBuilder.equal(root.get("contentTypeid"), contentTypeId);
+
+        List<Search> allMatchingSearches = searchRepository.findAll(spec);
+
+        // Shuffle the list to randomize the order
+        Collections.shuffle(allMatchingSearches);
+
+        // Limit the results to the requested number
+        List<UnifiedContentDto> limitedUnifiedContents = allMatchingSearches.stream()
+                .limit(limit)
+                .map(searchEntity -> {
+                    TourSpotInfoDto tourSpotInfo = null;
+                    CulturalFacilityInfoDto culturalFacilityInfo = null;
+                    FestivalInfoDto festivalInfo = null;
+                    TourCourseInfoDto tourCourseInfo = null;
+
+                    String currentContentTypeId = searchEntity.getContentTypeid();
+                    String contentId = searchEntity.getContentid();
+
+                    switch (currentContentTypeId) {
+                        case "12": // 관광지
+                            tourSpotInfo = tourSpotInfoService.getTourSpotById(contentId).orElse(null);
+                            break;
+                        case "14": // 문화시설
+                            culturalFacilityInfo = culturalFacilityInfoService.getCulturalFacilityById(contentId).orElse(null);
+                            break;
+                        case "15": // 축제/공연/행사
+                            festivalInfo = festivalInfoService.getFestivalById(contentId).orElse(null);
+                            break;
+                        case "25": // 여행 코스
+                            tourCourseInfo = tourCourseInfoService.getTourCourseById(contentId).orElse(null);
+                            break;
+                        default:
+                            break;
+                    }
+
+                    return UnifiedContentDto.fromSearchAndDetails(
+                            searchEntity,
+                            tourSpotInfo,
+                            culturalFacilityInfo,
+                            festivalInfo,
+                            tourCourseInfo
+                    );
+                })
+                .collect(Collectors.toList());
+
+        // Map the UnifiedContentDto list to RandomSearchResponseDto list
+        return limitedUnifiedContents.stream()
+                .map(RandomSearchDto::fromUnifiedContentDto)
+                .collect(Collectors.toList());
+    }
+
 
     public List<String> getAvailableCat1Options() {
         return searchRepository.findDistinctCat1();
