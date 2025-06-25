@@ -47,7 +47,7 @@ public class SearchService {
             List<Predicate> predicates = new ArrayList<>();
 
             if (StringUtils.hasText(filters.getContentTypeId())) {
-                predicates.add(criteriaBuilder.equal(root.get("contentTypeId"), filters.getContentTypeId()));
+                predicates.add(criteriaBuilder.equal(root.get("contentTypeid"), filters.getContentTypeId()));
             }
             if (StringUtils.hasText(filters.getCat1())) {
                 predicates.add(criteriaBuilder.equal(root.get("cat1"), filters.getCat1()));
