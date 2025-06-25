@@ -16,8 +16,8 @@ import lombok.*;
 public class TourCourseInfo {
 
     @Id
-    @Column(name = "contentId")
-    private String contentId;
+    @Column(name = "contentid")
+    private String contentid;
 
     @Column(name = "distance", length = 225)
     private String distance;

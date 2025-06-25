@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SpotInfoEvent {
-    public static final String Topic = "spotinfo";
+    public static final String Topic = "tourspotinfo";
 
     private String action;
 

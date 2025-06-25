@@ -36,7 +36,7 @@ public class Search {
     @Column(name = "cat3")
     private String cat3;
 
-    @Column(name = "lDong_signgu_cd")
+    @Column(name = "l_dong_signgu_cd")
     private String lDongSignguCd;
 
     @Column(name = "l_dong_regn_cd")

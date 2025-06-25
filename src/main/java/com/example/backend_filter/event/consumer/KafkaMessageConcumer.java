@@ -4,6 +4,7 @@ import com.example.backend_filter.dto.SearchDto;
 import com.example.backend_filter.entity.Search;
 import com.example.backend_filter.event.consumer.message.common.CommonInfoEvent;
 import com.example.backend_filter.event.consumer.message.course.CourseInfoEvent;
+import com.example.backend_filter.event.consumer.message.courseitem.CourseItemEvent;
 import com.example.backend_filter.event.consumer.message.cultural.CulturalInfoEvent;
 import com.example.backend_filter.event.consumer.message.event.EventInfoEvent;
 import com.example.backend_filter.event.consumer.message.search.SearchEvent;
@@ -29,6 +30,7 @@ public class KafkaMessageConcumer {
     private final CulturalFacilityInfoRepository culturalFacilityInfoRepository;
     private final FestivalInfoRepository festivalInfoRepository;
     private final TourCourseInfoRepository tourCourseInfoRepository;
+    private final TourCourseItemRepository tourCourseItemRepository;
 
     private static final String VALUE_DEFAULT_TYPE = JsonDeserializer.VALUE_DEFAULT_TYPE;
 
@@ -57,7 +59,7 @@ public class KafkaMessageConcumer {
             properties = { VALUE_DEFAULT_TYPE + ":com.example.backend_filter.event.consumer.message.common.CommonInfoEvent" }
     )
     public void handleCommonInfoEvent(CommonInfoEvent event, Acknowledgment ack) {
-        log.info("Received CommonInfoEvent for contentId: {}", event.getDetailCommon().getContentId());
+        log.info("Received CommonInfoEvent for contentId: {}", event.getDetailCommon().getContentid());
         detailCommonRepository.save(event.getDetailCommon());
         // ack.acknowledge(); // 메시지 처리 완료 확인
     }
@@ -71,7 +73,7 @@ public class KafkaMessageConcumer {
             properties = { VALUE_DEFAULT_TYPE + ":com.example.backend_filter.event.consumer.message.spot.SpotInfoEvent" }
     )
     public void handleSpotInfoEvent(SpotInfoEvent event, Acknowledgment ack) {
-        log.info("Received SpotInfoEvent for contentId: {}", event.getTourSpotInfo().getContentId());
+        log.info("Received SpotInfoEvent for contentId: {}", event.getTourSpotInfo().getContentid());
         tourSpotInfoRepository.save(event.getTourSpotInfo());
     //  ack.acknowledge();
     }
@@ -85,7 +87,7 @@ public class KafkaMessageConcumer {
             properties = { VALUE_DEFAULT_TYPE + ":com.example.backend_filter.event.consumer.message.cultural.CulturalInfoEvent" }
     )
     public void handleCulturalInfoEvent(CulturalInfoEvent event, Acknowledgment ack) {
-        log.info("Received CulturalInfoEvent for contentId: {}", event.getCulturalFacilityInfo().getContentId());
+        log.info("Received CulturalInfoEvent for contentId: {}", event.getCulturalFacilityInfo().getContentid());
         culturalFacilityInfoRepository.save(event.getCulturalFacilityInfo());
     //  ack.acknowledge();
     }
@@ -99,7 +101,7 @@ public class KafkaMessageConcumer {
             properties = { VALUE_DEFAULT_TYPE + ":com.example.backend_filter.event.consumer.message.event.EventInfoEvent" }
     )
     public void handleEventInfoEvent(EventInfoEvent event, Acknowledgment ack) {
-        log.info("Received EventInfoEvent for contentId: {}", event.getFestivalInfo().getContentId());
+        log.info("Received EventInfoEvent for contentId: {}", event.getFestivalInfo().getContentid());
         festivalInfoRepository.save(event.getFestivalInfo());
 //        ack.acknowledge();
     }
@@ -113,8 +115,18 @@ public class KafkaMessageConcumer {
             properties = { VALUE_DEFAULT_TYPE + ":com.example.backend_filter.event.consumer.message.course.CourseInfoEvent" }
     )
     public void handleCourseInfoEvent(CourseInfoEvent event, Acknowledgment ack) {
-        log.info("Received CourseInfoEvent for contentId: {}", event.getTourCourseInfo().getContentId());
+        log.info("Received CourseInfoEvent for contentId: {}", event.getTourCourseInfo().getContentid());
         tourCourseInfoRepository.save(event.getTourCourseInfo());
 //        ack.acknowledge();
+    }
+
+    @Transactional
+    @KafkaListener(
+            topics = CourseItemEvent.Topic,
+            properties = { VALUE_DEFAULT_TYPE + ":com.example.backend_filter.event.consumer.message.courseitem.CourseItemEvent" }
+    )
+    public void handleCourseItemEvent(CourseItemEvent event, Acknowledgment ack){
+        log.info("Received CourseItemEvent for contentId: {}", event.getTourCourseItem().getContentid());
+        tourCourseItemRepository.save(event.getTourCourseItem());
     }
 }
