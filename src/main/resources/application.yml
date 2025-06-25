@@ -1,5 +1,5 @@
 spring:
-
+  kafka:
     listener:
       ack-mode: manual_immediate
     consumer:
