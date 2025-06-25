@@ -8,6 +8,8 @@ import org.springframework.web.servlet.config.annotation.CorsRegistration;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
+    // API Gateway에서 CORS를 처리하므로 주석 처리
+    /*
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
@@ -32,4 +34,5 @@ public class WebConfig implements WebMvcConfigurer {
                 // Preflight 요청의 캐시 시간 설정 (초 단위)
                 .maxAge(3600);
     }
+    */
 }
