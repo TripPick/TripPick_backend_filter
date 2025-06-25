@@ -45,7 +45,7 @@ public class TourCourseItemDto {
                 .subdetailalt(entity.getSubdetailalt())
                 .subdetailimg(entity.getSubdetailimg())
                 .subdetailoverview(entity.getSubdetailoverview())
-                .subname(entity.getSubnum())
+                .subname(entity.getSubname())
                 .subnum(entity.getSubnum())
                 .build();
     }
