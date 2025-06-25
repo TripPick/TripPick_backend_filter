@@ -16,7 +16,7 @@ import com.example.backend_filter.entity.FestivalInfo; // FestivalInfo 엔티티
 public class FestivalInfoDto {
 
     @Schema(description = "콘텐츠 ID")
-    private String contentId;
+    private String contentid;
 
     @Schema(description = "연령 제한")
     private String agelimit;
@@ -71,7 +71,7 @@ public class FestivalInfoDto {
 
     public static FestivalInfoDto fromEntity(FestivalInfo entity) {
         return FestivalInfoDto.builder()
-                .contentId(entity.getContentId())
+                .contentid(entity.getContentid())
                 .agelimit(entity.getAgelimit())
                 .bookingplace(entity.getBookingplace())
                 .discountinfofestival(entity.getDiscountinfofestival())

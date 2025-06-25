@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "DetailCommon")
+@Table(name = "detail_common")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,10 +21,10 @@ public class DetailCommon {
 
     @Id
     @Column(name = "contentid", length = 20, nullable = false)
-    private String contentId;
+    private String contentid;
 
     @Column(name = "contenttypeid", length = 2)
-    private String contentTypeId;
+    private String contenttypeid;
 
     @Column(name = "areacode", length = 2)
     private String areacode;
@@ -44,7 +44,7 @@ public class DetailCommon {
     @Column(name = "tel", length = 20)
     private String tel;
 
-    @Column(name = "title", length = 20)
+    @Column(name = "title", columnDefinition = "TEXT")
     private String title;
 
     @Column(name = "zipcode", length = 5)

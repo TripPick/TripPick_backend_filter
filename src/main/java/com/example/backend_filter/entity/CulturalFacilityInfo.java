@@ -18,8 +18,8 @@ import java.time.LocalDateTime;
 public class CulturalFacilityInfo {
 
     @Id
-    @Column(name = "contentId")
-    private String contentId;
+    @Column(name = "contentid")
+    private String contentid;
 
     @Column(name = "accomcountculture", length = 225)
     private String accomcountculture;

@@ -16,7 +16,7 @@ import com.example.backend_filter.entity.CulturalFacilityInfo; // CulturalFacili
 public class CulturalFacilityInfoDto {
 
     @Schema(description = "콘텐츠 ID")
-    private String contentId;
+    private String contentid;
 
     @Schema(description = "수용 인원")
     private String accomcountculture;
@@ -59,7 +59,7 @@ public class CulturalFacilityInfoDto {
 
     public static CulturalFacilityInfoDto fromEntity(CulturalFacilityInfo entity) {
         return CulturalFacilityInfoDto.builder()
-                .contentId(entity.getContentId())
+                .contentid(entity.getContentid())
                 .accomcountculture(entity.getAccomcountculture())
                 .chkbabycarriageculture(entity.getChkbabycarriageculture())
                 .chkcreditcardculture(entity.getChkcreditcardculture())
