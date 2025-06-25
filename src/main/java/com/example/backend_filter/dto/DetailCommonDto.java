@@ -44,8 +44,8 @@ public class DetailCommonDto {
 
     public static DetailCommonDto fromEntity(DetailCommon entity) {
         return DetailCommonDto.builder()
-                .contentid(entity.getContentId())
-                .contenttypeid(entity.getContentTypeId())
+                .contentid(entity.getContentid())
+                .contenttypeid(entity.getContenttypeid())
                 .areacode(entity.getAreacode())
                 .addr1(entity.getAddr1())
                 .addr2(entity.getAddr2())

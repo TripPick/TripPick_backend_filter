@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CulturalInfoEvent {
-    public static final String Topic = "culturalinfo";
+    public static final String Topic = "culturalfacilityinfo";
 
     private String action;
 

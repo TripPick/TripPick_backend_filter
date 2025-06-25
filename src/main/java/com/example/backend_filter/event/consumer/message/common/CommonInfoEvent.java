@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CommonInfoEvent {
-    public static final String Topic = "commoninfo";
+    public static final String Topic = "detailcommon";
 
     private String action;
 

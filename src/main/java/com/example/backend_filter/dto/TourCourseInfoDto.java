@@ -16,7 +16,7 @@ import com.example.backend_filter.entity.TourCourseInfo; // TourCourseInfo 엔�
 public class TourCourseInfoDto {
 
     @Schema(description = "콘텐츠 ID")
-    private String contentId;
+    private String contentid;
 
     @Schema(description = "코스 총 거리")
     private String distance;
@@ -36,7 +36,7 @@ public class TourCourseInfoDto {
     // TourCourseInfo 엔티티를 DTO로 변환하는 정적 팩토리 메서드 추가
     public static TourCourseInfoDto fromEntity(TourCourseInfo entity) {
         return TourCourseInfoDto.builder()
-                .contentId(entity.getContentId())
+                .contentid(entity.getContentid())
                 .distance(entity.getDistance())
                 .infocentertourcourse(entity.getInfocentertourcourse())
                 .schedule(entity.getSchedule())

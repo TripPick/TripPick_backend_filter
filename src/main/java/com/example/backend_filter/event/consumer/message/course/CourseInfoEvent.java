@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CourseInfoEvent {
-    public static final String Topic = "courseinfo";
+    public static final String Topic = "tourcourseinfo";
 
     private String action;
 
