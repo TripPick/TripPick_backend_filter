@@ -32,7 +32,7 @@ public class SearchFilterDto {
     private String lDongSigunguCd;
 
     @Schema(description = "지역 코드", example = "6")
-    private String areaCode;
+    private String areacode;
 
     @Schema(description = "제목 검색어", example = "낙동강")
     private String title;

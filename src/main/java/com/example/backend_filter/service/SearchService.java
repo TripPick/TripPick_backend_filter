@@ -64,8 +64,8 @@ public class SearchService {
                     predicates.add(criteriaBuilder.equal(root.get("lDongSigunguCd"), filters.getLDongSigunguCd()));
                 }
             }
-            if (StringUtils.hasText(filters.getAreaCode())) {
-                predicates.add(criteriaBuilder.equal(root.get("areaCode"), filters.getAreaCode()));
+            if (StringUtils.hasText(filters.getAreacode())) {
+                predicates.add(criteriaBuilder.equal(root.get("areaCode"), filters.getAreacode()));
             }
             if (StringUtils.hasText(filters.getTitle())) {
                 predicates.add(criteriaBuilder.like(root.get("title"), "%" + filters.getTitle() + "%"));
